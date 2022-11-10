@@ -1,0 +1,3 @@
+// Used to set Gradle's properties
+rootProject.name = 'hello-name'
+

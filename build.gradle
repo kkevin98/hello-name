@@ -1,0 +1,49 @@
+// Plugins in general adds compiling and testing capabilities to Gradle scripts
+// Each plugin can add tasks
+plugins {
+    // since we're working with a Java application we'll use the Java plug-in
+    // id 'java'
+    // If you want to create a Java application you use the next one
+    id 'application'
+}
+
+// Field related to Maven repositories
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+// With this simple example we do not work with dependencies, so we can skip them for the moment
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// Used with the 'java' plugin
+// used to produce runnable .jar file inside build/libs/ directory.
+// Otherwise the 'build' and the 'jar' tasks will create non-runnable jar-files
+// Once added those lines you're able to run the previous .jar files using 'java -jar filename.jar'
+// To use with the java Plugin bcs it is needed to create excecutable .jar files
+/*
+jar{
+    manifest{
+        attributes(
+                "Main-class" : "dssc.hello.Main"
+        )
+    }
+}*/
+
+
+// Configuration necessary for the 'application' plugin
+// This plugin will add new tasks:
+//  - application
+//  - distribution/disTar and disZip
+application{
+    mainClass = "dssc.hello.Main"
+}
